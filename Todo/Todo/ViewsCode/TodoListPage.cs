@@ -1,4 +1,5 @@
 ﻿
+using Todo.Models;
 using Xamarin.Forms;
 
 namespace Todo.ViewsCode
@@ -28,13 +29,19 @@ namespace Todo.ViewsCode
 		}
 
 		#region EventHandlers
-		private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+		private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
 		{
-			
+			if (e.SelectedItem == null)
+				return;
 
+			var todoItem = (TodoItem)e.SelectedItem;
+			var todoPage = new TodoItemPage();
+			todoPage.BindingContext = todoItem;
+
+			await Navigation.PushAsync(todoPage);
+
+			((ListView)sender).SelectedItem = null;
 		}
 		#endregion
 	}
 }
-
-

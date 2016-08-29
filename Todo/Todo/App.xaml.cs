@@ -9,9 +9,6 @@ namespace Todo
 	{
 		public App()
 		{
-			//InitializeComponent();
-			//MainPage = new TodoPage();
-
 			var tp = new TabbedPage();
 			tp.Children.Add(new NavigationPage(new TodoListPage()) { Title = "C#", Icon = "csharp" });
 			//tp.Children.Add(new NavigationPage(new TodoListXaml()) { Title = "XAML", Icon = "xaml" });
