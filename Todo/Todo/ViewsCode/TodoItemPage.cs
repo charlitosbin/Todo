@@ -8,6 +8,7 @@ using System.Diagnostics;
 
 using Xamarin.Forms;
 using Todo.Models;
+using Todo.Contracts;
 
 namespace Todo.ViewsCode
 {

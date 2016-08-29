@@ -2,11 +2,24 @@
 using Xamarin.Forms;
 
 using Todo.ViewsCode;
+using Todo.Data;
 
 namespace Todo
 {
 	public partial class App : Application
 	{
+		private static TodoItemDatabase database;
+		public static TodoItemDatabase Database { 
+			get {
+				if (database == null) {
+					database = new TodoItemDatabase();
+				}
+
+				return database;
+			}
+		}
+
+
 		public App()
 		{
 			var tp = new TabbedPage();
@@ -30,6 +43,8 @@ namespace Todo
 		{
 			// Handle when your app resumes
 		}
+
+
 	}
 }
 
