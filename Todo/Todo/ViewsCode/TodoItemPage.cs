@@ -105,7 +105,7 @@ namespace Todo.ViewsCode
 		private void SpeakButton_Clicked(object sender, EventArgs e)
 		{
 			var todoItem = (TodoItem)BindingContext;
-			DependencyService.Get<ITextToSpeech>().Speack(todoItem.Name + " " + todoItem.Notes);
+			DependencyService.Get<ITextToSpeech>().Speak(todoItem.Name + " " + todoItem.Notes);
 		}
 		#endregion
 

@@ -1,6 +1,8 @@
-﻿ 
-using Todo.Models;
+﻿
 using Xamarin.Forms;
+
+using Todo.Contracts;
+using Todo.Models;
 
 namespace Todo.ViewsCode
 {
@@ -47,6 +49,11 @@ namespace Todo.ViewsCode
 								}));
 
 			Content = layout;
+			var tbiAdd = GetToolBarPlusItem();
+			var tbiSpeak = GetToolBarChatItem();
+
+			ToolbarItems.Add(tbiAdd);
+			ToolbarItems.Add(tbiSpeak);
 		}
 
 		protected override void OnAppearing()
@@ -56,9 +63,34 @@ namespace Todo.ViewsCode
 		}
 
 		#region Toolbar
-		private ToolbarItem GetToolBarItem()
-		{ 
-		
+		private ToolbarItem GetToolBarPlusItem()
+		{
+			var tbiAdd = new ToolbarItem("+", "plus.png", () =>{
+				var todoItem = new TodoItem();
+				var todoPage = new TodoItemPage();
+				todoPage.BindingContext = todoItem;
+				Navigation.PushAsync(todoPage);
+			}, 0, 0);
+			tbiAdd.StyleId = "ToolbarAdd";
+
+			return tbiAdd;
+		}
+
+		private ToolbarItem GetToolBarChatItem()
+		{
+			var tbiSpeak = new ToolbarItem("?", "chat.png", () =>{
+				var todos = App.Database.GetItemsNotDone();
+				var tospeak = string.Empty;
+				foreach (var t in todos)
+					tospeak += t.Name + " ";
+				if (string.IsNullOrEmpty(tospeak))
+					tospeak = "there are not tasks to do";
+
+				DependencyService.Get<ITextToSpeech>().Speak("Hello from Xamarin Forms");
+			},0,0);
+			tbiSpeak.StyleId = "ToolbarSpeak";
+
+			return tbiSpeak;
 		}
 		#endregion
 

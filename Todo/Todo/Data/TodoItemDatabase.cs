@@ -27,7 +27,7 @@ namespace Todo.Data
 			}
 		}
 
-		public IEnumerable<TodoItem> GetItemNotDone()
+		public IEnumerable<TodoItem> GetItemsNotDone()
 		{ 
 			lock(locker) {
 				return database.Query<TodoItem>("SELECT * FROM (TodoItem) WHERE [Done] = 0");

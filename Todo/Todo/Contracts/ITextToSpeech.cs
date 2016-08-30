@@ -4,6 +4,6 @@ namespace Todo.Contracts
 {
 	public interface ITextToSpeech
 	{
-		void Speack(String text);
+		void Speak(String text);
 	}
 }
