@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Diagnostics;
 
-using Xamarin.Forms;
 using Todo.Models;
 using Todo.Contracts;
 
